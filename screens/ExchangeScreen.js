@@ -1,11 +1,13 @@
 import React from 'react';
 import { View,Text,TextInput,StyleSheet,TouchableOpacity,Alert,} from 'react-native';
+import db from '../config';
+import firebase from 'firebase';
 
 export default class ExchangeScreen extends React.Component {
     constructor () {
         super();
         this.state = {
-            userName : "",
+            userName : firebase.auth().currentUser.email,
             description : "",
             itemName : ""
                 }
@@ -25,9 +27,17 @@ export default class ExchangeScreen extends React.Component {
                 <TextInput
 style={styles.textInput}
 placeholder ={"Item Name"}
+onChangeText={(text)=>{ 
+    this.setState({ itemName: text
+     }) 
+     }}
 />
 <TextInput
 placeholder ={"Item Description"}
+onChangeText={(text)=>{
+     this.setState({ description: text
+      })
+       }}
 /> 
 
  <TouchableOpacity  style={styles.addItemButton}

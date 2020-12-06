@@ -5,7 +5,7 @@ export default class HomeScreen extends React.Component {
     constructor () {
         super();
         this.state = {
-            userName : "",
+            userName : firebase.auth().currentUser.email,
             description : "",
             itemName : ""
                 }
@@ -15,7 +15,7 @@ render () {
         <View>
       <FlatList
       keyExtractor = {this.keyExtractor}
-      data = {this.state.allRequests}
+      data = {this.state.itemName}
       renderItem = {this.renderItem}
       />  
         </View>

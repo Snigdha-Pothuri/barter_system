@@ -63,7 +63,7 @@ export default class SignUpLogin extends React.Component{
 userLogin = (emailId, password)=>{
    firebase.auth().signInWithEmailAndPassword(emailId, password)
    .then(()=>{
-     this.props.navigation.navigate('DonateBooks')
+     this.props.navigation.navigate('HomeScreen')
    })
    .catch((error)=> {
      var errorCode = error.code;
