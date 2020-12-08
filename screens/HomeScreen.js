@@ -1,28 +1,36 @@
 import React from 'react';
 import { View,Text,FlatList,StyleSheet,TouchableOpacity} from 'react-native';
+import db from '../config';
+import firebase from firebase;
+import { ListItem } from 'react-native-elements';
 
 export default class HomeScreen extends React.Component {
-    constructor () {
+    constructor(){ 
         super();
-        this.state = {
-            userName : firebase.auth().currentUser.email,
-            description : "",
-            itemName : ""
-                }
-    }
-render () {
-    return (
-        <View>
-      <FlatList
-      keyExtractor = {this.keyExtractor}
-      data = {this.state.itemName}
-      renderItem = {this.renderItem}
-      />  
-        </View>
-    )
-}
+        this.state = { 
+            allRequests : [],
+        requestRef= null
+         } 
+        }
+  
+        getAllRequests =()=>{ 
+            this.requestRef = db.collection("exchanged_requests") 
+            .onSnapshot((snapshot)=>{ 
+                var allRequests = [] 
+                snapshot.forEach((doc) => {
+                     allRequests.push(doc.data()) 
+                    }) 
+                    this.setState({allRequests:allRequests})
+                 })                                 
+                } 
+                componentDidMount(){
+                     this.getAllRequests() 
+                    } 
+                    componentWillUnmount(){ 
+                        this.requestRef();
+                     }
 
-keyExtractor = (item,index)=>
+keyExtractor = (item,index)=> 
 index.toString();
 renderItem = ({item,i}) => {
 return (
@@ -40,7 +48,20 @@ return (
 />
 )
 }
-} 
+}
+render () {
+    return (
+        <View>
+      <FlatList
+      keyExtractor = {this.keyExtractor}
+      data={this.state.allRequests}
+      renderItem = {this.renderItem}
+      />  
+        </View>
+    )
+}
+
+
  
 const styles = StyleSheet.create({
     button:{

@@ -23,12 +23,12 @@ ExchangeScreen : {
   }
 })   
 
-const AppContainer = createAppContainer(switchNavigator);
+
 const switchNavigator = createSwitchNavigator({ 
   SignUpLogin:{screen: SignUpLogin},
    BottomTab:{screen: AppTabNavigator}
    })
-   
+   const AppContainer = createAppContainer(switchNavigator);
 
 const styles = StyleSheet.create({
   container: {
