@@ -1,7 +1,5 @@
 import React from 'react';
 import { View,Text,FlatList,StyleSheet,TouchableOpacity} from 'react-native';
-import db from '../config';
-import firebase from firebase;
 import { ListItem } from 'react-native-elements';
 
 export default class HomeScreen extends React.Component {
@@ -9,8 +7,9 @@ export default class HomeScreen extends React.Component {
         super();
         this.state = { 
             allRequests : [],
-        requestRef= null
-         } 
+      
+         }  
+         this.requestRef= null 
         }
   
         getAllRequests =()=>{ 
@@ -49,17 +48,7 @@ return (
 )
 }
 }
-render () {
-    return (
-        <View>
-      <FlatList
-      keyExtractor = {this.keyExtractor}
-      data={this.state.allRequests}
-      renderItem = {this.renderItem}
-      />  
-        </View>
-    )
-}
+
 
 
  
