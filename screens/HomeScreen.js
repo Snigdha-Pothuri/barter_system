@@ -1,6 +1,7 @@
 import React from 'react';
 import { View,Text,FlatList,StyleSheet,TouchableOpacity} from 'react-native';
 import { ListItem } from 'react-native-elements';
+import db from '../config'
 
 export default class HomeScreen extends React.Component {
     constructor(){ 
@@ -29,7 +30,7 @@ export default class HomeScreen extends React.Component {
                         this.requestRef();
                      }
 
-keyExtractor = (item,index)=> 
+keyExtractor = (item,index)=>  
 index.toString();
 renderItem = ({item,i}) => {
 return (
@@ -46,8 +47,27 @@ return (
    bottomDivider 
 />
 )
-}
-}
+} 
+render(){ 
+    return(
+        <View>
+         <View style={{flex:1}}>
+              <View style={{flex:1}}> 
+              { this.state.allRequests.length === 0 ?(
+                   <View style={{flex:1, fontSize: 20, justifyContent:'center', alignItems:'center'}}> 
+                   <Text style={{ fontSize: 20}}>List of all Barters</Text> 
+                   </View> 
+                   ) :(
+                        <FlatList keyExtractor={this.keyExtractor}
+                         data={this.state.allRequests} 
+                         renderItem={this.renderItem} />
+                          ) } 
+                          </View> 
+                          </View>
+                       </View>
+     ) }
+} ;
+           
 
 
 
