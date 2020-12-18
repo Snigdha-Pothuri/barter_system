@@ -6,8 +6,8 @@ import ExchangeScreen from './screens/ExchangeScreen';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
-import CustomSideBarMenu from './screens/CustomSideBarMenu';
-import SettingScreen from './screens/SettingScreen'
+import CustomSideBarMenu from './components/CustomSideBarMenu';
+import SettingScreen from './screens/SettingScreen';
 
 export default function App() {
   return (
@@ -26,20 +26,15 @@ ExchangeScreen : {
   }
 })   
 
-const switchNavigator = createSwitchNavigator({ 
-  SignUpLogin:{screen: SignUpLogin},
-   BottomTab:{screen: AppTabNavigator},
-   AppDrawerNavigator : {screen:AppDrawerNavigator}
-   })
-   const AppContainer = createAppContainer(switchNavigator); 
+
 
    const AppDrawerNavigator = createDrawerNavigator ({
-    Home : {
-       screen : TabNavigator
+    Home:{ 
+      screen:AppTabNavigator
     },
     Settings : {
       screen : SettingScreen
-    },
+    }},
     
     {
      contentComponent : CustomSideBarMenu
@@ -50,6 +45,11 @@ const switchNavigator = createSwitchNavigator({
    
    })
 
+   const switchNavigator = createSwitchNavigator({ 
+    SignUpLogin:{screen: SignUpLogin},
+     AppDrawerNavigator :AppDrawerNavigator
+     })
+     const AppContainer = createAppContainer(switchNavigator); 
 
 const styles = StyleSheet.create({
   container: {
