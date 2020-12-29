@@ -2,6 +2,7 @@ import React from 'react';
 import { View,Text,TextInput,StyleSheet,TouchableOpacity,Alert,} from 'react-native';
 import db from '../config';
 import firebase from 'firebase';
+import MyHeader from '../components/MyHeader';
 
 export default class ExchangeScreen extends React.Component {
     constructor () {
@@ -23,7 +24,11 @@ export default class ExchangeScreen extends React.Component {
     }
     render () {
         return (
-            <View>
+            <View> 
+                 <MyHeader  
+        title = "Exchange an item"
+        navigation= {this.props.navigation}
+      />
                 <TextInput
 style={styles.textInput}
 placeholder ={"Item Name"}

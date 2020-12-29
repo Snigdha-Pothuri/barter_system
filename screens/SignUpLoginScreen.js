@@ -12,8 +12,6 @@ import {
     import db from '../config';
 import firebase from 'firebase';
 
-
-
 export default class SignUpLogin extends React.Component{
   constructor(){
     super();
