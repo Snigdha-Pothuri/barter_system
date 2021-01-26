@@ -13,6 +13,9 @@ export default class ExchangeScreen extends React.Component {
             itemName : ""
                 }
     }
+    createUniqueId () {
+        
+    } 
     addItem = (itemName,description) => {
         var userName = this.state.userName
         db.collection("exchanged_requests").add({
