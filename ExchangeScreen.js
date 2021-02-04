@@ -2,6 +2,7 @@ import React from 'react';
 import { View,Text,TextInput,StyleSheet,TouchableOpacity,Alert,} from 'react-native';
 import db from '../config';
 import firebase from 'firebase';
+import MyHeader from '../components/MyHeader';
 
 export default class ExchangeScreen extends React.Component {
     constructor () {
@@ -12,18 +13,26 @@ export default class ExchangeScreen extends React.Component {
             itemName : ""
                 }
     }
+    createUniqueId () {
+        return Math.random().toString(36).substring(7); 
+    } 
     addItem = (itemName,description) => {
         var userName = this.state.userName
         db.collection("exchanged_requests").add({
        "userName" : userName,
        "itemName" : itemName,
-       "description" : description
+       "description" : description,
+       exchangeId = this.createUniqueId()
         })
         return alert("Item ready to exchange"," ",[{text : 'OK' , onPress:()=>{ this.props.navigation.navigate("HomeScreen")}} ])
     }
     render () {
         return (
-            <View>
+            <View> 
+                 <MyHeader  
+        title = "Exchange an item"
+        navigation= {this.props.navigation}
+      />
                 <TextInput
 style={styles.textInput}
 placeholder ={"Item Name"}

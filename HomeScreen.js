@@ -1,7 +1,8 @@
 import React from 'react';
 import { View,Text,FlatList,StyleSheet,TouchableOpacity} from 'react-native';
 import { ListItem } from 'react-native-elements';
-import db from '../config'
+import db from '../config';
+import MyHeader from '../components/MyHeader';
 
 export default class HomeScreen extends React.Component {
     constructor(){ 
@@ -51,6 +52,10 @@ return (
 render(){ 
     return(
         <View>
+             <MyHeader  
+        title = "Available Items for Exchange"
+        navigation= {this.props.navigation}
+      />
          <View style={{flex:1}}>
               <View style={{flex:1}}> 
               { this.state.allRequests.length === 0 ?(
