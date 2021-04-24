@@ -22,7 +22,7 @@ export default class ExchangeScreen extends React.Component {
        "userName" : userName,
        "itemName" : itemName,
        "description" : description,
-       exchangeId = this.createUniqueId()
+       exchangeId : this.createUniqueId()
         })
         return alert("Item ready to exchange"," ",[{text : 'OK' , onPress:()=>{ this.props.navigation.navigate("HomeScreen")}} ])
     }

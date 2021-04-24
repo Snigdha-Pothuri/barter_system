@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import SignUpLogin from './screens/SignupLoginScreen';
-import HomeScreen from './screens/HomeScreen';
-import ExchangeScreen from './screens/ExchangeScreen';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
-import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import CustomSideBarMenu from './components/CustomSideBarMenu';
 import SettingScreen from './screens/SettingScreen';
@@ -19,33 +15,6 @@ const switchNavigator = createSwitchNavigator({
    Drawer:{screen: AppDrawerNavigator},
    BottomTab: {screen: AppTabNavigator}, 
   }) 
-  const AppContainer = createAppContainer(switchNavigator);
-
-const AppTabNavigator = createBottomTabNavigator({
- HomeScreen : {
-      screen :HomeScreen,
-  },
-ExchangeScreen : {
-      screen : ExchangeScreen,
-  }
-})   
-
-    const AppDrawerNavigator = createDrawerNavigator ({
-    Home:{ 
-      screen:AppTabNavigator
-    },
-    Settings : {
-      screen : SettingScreen
-    }},
-    
-    {
-     contentComponent : CustomSideBarMenu
-   },
-   {
-   
-   initialRouteName : "Home"
-   
-   })
 
 const styles = StyleSheet.create({
   container: {
