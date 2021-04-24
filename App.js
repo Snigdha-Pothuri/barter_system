@@ -9,13 +9,17 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import CustomSideBarMenu from './components/CustomSideBarMenu';
 import SettingScreen from './screens/SettingScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-            <AppContainer/>
-      </View>
-  );
-}
+export default function App() { 
+  return ( 
+  <AppContainer/> 
+  ); 
+} 
+const switchNavigator = createSwitchNavigator({
+   SignUpLogin:{screen: SignUpLogin},
+   Drawer:{screen: AppDrawerNavigator},
+   BottomTab: {screen: AppTabNavigator}, 
+  }) 
+  const AppContainer = createAppContainer(switchNavigator);
 
 const AppTabNavigator = createBottomTabNavigator({
  HomeScreen : {
@@ -26,9 +30,7 @@ ExchangeScreen : {
   }
 })   
 
-
-
-   const AppDrawerNavigator = createDrawerNavigator ({
+    const AppDrawerNavigator = createDrawerNavigator ({
     Home:{ 
       screen:AppTabNavigator
     },
@@ -44,12 +46,6 @@ ExchangeScreen : {
    initialRouteName : "Home"
    
    })
-
-   const switchNavigator = createSwitchNavigator({ 
-    SignUpLogin:{screen: SignUpLogin},
-     AppDrawerNavigator :AppDrawerNavigator
-     })
-     const AppContainer = createAppContainer(switchNavigator); 
 
 const styles = StyleSheet.create({
   container: {

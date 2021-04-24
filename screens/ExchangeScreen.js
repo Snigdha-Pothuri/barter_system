@@ -14,14 +14,15 @@ export default class ExchangeScreen extends React.Component {
                 }
     }
     createUniqueId () {
-        
+        return Math.random().toString(36).substring(7); 
     } 
     addItem = (itemName,description) => {
         var userName = this.state.userName
         db.collection("exchanged_requests").add({
        "userName" : userName,
        "itemName" : itemName,
-       "description" : description
+       "description" : description,
+       exchangeId = this.createUniqueId()
         })
         return alert("Item ready to exchange"," ",[{text : 'OK' , onPress:()=>{ this.props.navigation.navigate("HomeScreen")}} ])
     }
