@@ -4,6 +4,9 @@ import SignUpLogin from './screens/SignupLoginScreen';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import CustomSideBarMenu from './components/CustomSideBarMenu';
 import SettingScreen from './screens/SettingScreen';
+import {AppDrawerNavigator} from "./components/AppDrawerNavigator" 
+import {AppTabNavigator} from "./components/AppTabNavigator" 
+import {createAppContainer,createSwitchNavigator} from "react-navigation"
 
 export default function App() { 
   return ( 
@@ -15,7 +18,7 @@ const switchNavigator = createSwitchNavigator({
    Drawer:{screen: AppDrawerNavigator},
    BottomTab: {screen: AppTabNavigator}, 
   }) 
-
+const AppContainer=createAppContainer(switchNavigator)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
