@@ -45,37 +45,37 @@ export default class MyBarters extends React.Component {
    })
    } 
    
-  /* sendBook = (bookDetails) =>{
-     if(bookDetails.request_status === "bookSent"){
+ sendBook = (bookDetails) =>{
+     if(bookDetails.request_status === "itemSent"){
        var requestStatus = "Donor interested"
-       db.collection("all_donations").doc(bookDetails.doc_id).update({
+       db.collection("all_barters").doc(bookDetails.doc_id).update({
          "request_status" : "Donor interested"
        })
        this.sendNotification(bookDetails,requestStatus)
      } 
      else {
         var requestStatus = "Book sent"
-        db.collection("all_donations").doc(bookDetails.doc_id).update({
+        db.collection("all_barters").doc(bookDetails.doc_id).update({
           "request_status" : "Book sent"
         })
         this.sendNotification(bookDetails,requestStatus)
 
      }
 
-   }*/ 
+   }
    sendNotification = (bookDetails,requestStatus) => {
     var requestId = bookDetails.exchangeId
     var donorId = bookDetails.donor_id
-    db.collection("all_notifications").where("requestId","==",requestId)
+    db.collection("all_notifications").where("exchangeId","==",requestId)
     .where("donor_id","==",donorId).get()
     .then((snapshot)=>{
       snapshot.forEach((doc)=>{
         var message = ""
-        if (requestStatus === "Book sent") {
-          message = this.state.donorName + "Sent you a book"
+        if (requestStatus === "Item sent") {
+          message = this.state.donorName + "Sent you a item"
         }
         else {
-          message = this.state.donorName + "Has shown interest in donating you a book"
+          message = this.state.donorName + "Has shown interest in donating you a item"
         }
         db.collection("all_notifications").doc(doc.id).update({
           "message" : message,
@@ -97,16 +97,16 @@ componentDidMount (){
     return (
     <ListItem
        key={i}
-       title = {item.book_Name}
+       title = {item.item_Name}
        subtitle = {"requested by : " + item.request_by + "\nstatus :" + item.request_status} 
        leftElement = {<Icon
-                 name = "book" type="font-awesome" color = "yellow"
+                 name = "gift" type="font-awesome" color = "yellow"
        />}
        titleStyle = {{color:"black",fontWeight:"bold"}}
        rightElement = {
          <TouchableOpacity style={[styles.button,
         {
-          backgroundColor : item.request_status === "Book sent" ? "green" : "red"
+          backgroundColor : item.request_status === "item sent" ? "green" : "red"
         } 
         ]}
         onPress = {()=>{this.sendBook(item)}}
@@ -124,21 +124,21 @@ componentDidMount (){
   render(){
     return (
       <View style={{flex:1}}>
-        <MyHeader title="My Donations" 
+        <MyHeader title="My Barters" 
           navigation= {this.props.navigation}
         />
         <View style={{flex:1}}>
            {
-             this.state.allDonations.length === 0
+             this.state.allBarters.length === 0
              ? (
                <View>
-                 <Text> List of all books donated </Text>
+                 <Text> List of all items exchanged </Text>
                </View>
              ) 
              : (
                <FlatList
                   keyExtractor = {this.keyExtractor}
-                  data = {this.state.allDonations}
+                  data = {this.state.allBarters}
                   renderItem = {this.renderItem}
                />
              )
