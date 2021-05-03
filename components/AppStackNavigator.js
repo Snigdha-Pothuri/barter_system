@@ -1,10 +1,11 @@
 import {createStackNavigator} from 'react-navigation-stack';
 import ExchangeScreen from "../screens/ExchangeScreen";
 import HomeScreen from '../screens/HomeScreen';
+import ReceiverDetailsScreen from '../screens/ReceiverDetailsScreen"
 
 export const AppStackNavigator = createStackNavigator({
-    Exchange : {
-        screen : ExchangeScreen,
+    ReceiverDetails : {
+        screen : ReceiverDetailsScreen,
         navigationOptions:{
             headerShown : false
         }
@@ -20,6 +21,6 @@ export const AppStackNavigator = createStackNavigator({
 
 {
 
-initialRouteName : "Exchange"
+initialRouteName : "Home"
 
 })
