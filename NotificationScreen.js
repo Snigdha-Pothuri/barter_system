@@ -4,6 +4,7 @@ import { ListItem, Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import MyHeader from '../components/MyHeader';
 import db from '../config';
+import {SwipableFlatlist} from '../components/SwipableFlatlist'
 export default class Notifications extends Component{
     constructor(props) {
         super(props);
@@ -49,8 +50,8 @@ componentDidMount(){
       return (
         <ListItem
           key={index}
-          leftElement={<Icon name="box" type="font-awesome" color ='#696969'/>}
-          title={item.book_name}
+          leftElement={<Icon name="gift" type="font-awesome" color ='#696969'/>}
+          title={item.itemName}
           titleStyle={{ color: 'black', fontWeight: 'bold' }}
           subtitle={item.message}
           bottomDivider
@@ -72,11 +73,9 @@ componentDidMount(){
                  </View>
              )
              :(
-               <FlatList
-               keyExtractor={this.keyExtractor}
-               data={this.state.allNotifications}
-               renderItem={this.renderItem}
-               />
+               <SwipableFlatlist 
+                 allNotifications={this.state.Notifications}
+                 />
              )
          }
         </View>
