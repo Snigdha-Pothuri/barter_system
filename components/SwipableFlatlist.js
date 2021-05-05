@@ -37,7 +37,7 @@ export default class SwipableFlatlist extends React.Component {
 
         <ListItem
           
-           title = {data.item.item_Name}
+           title = {data.item.itemName}
            subtitle = {data.item.message} 
            leftElement = {<Icon
                      name = "gift" type="font-awesome" color = "yellow"
