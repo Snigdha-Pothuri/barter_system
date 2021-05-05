@@ -23,7 +23,8 @@ export default class SignUpLogin extends React.Component{
       address:'',
       contact:'',
       confirmPassword:'',
-      isModalVisible:'false'
+      isModalVisible:'false',
+      isExchangeRequestActive:'false'
     }
   }
 
@@ -39,7 +40,7 @@ export default class SignUpLogin extends React.Component{
          contact:this.state.contact,
          email_id:this.state.emailId,
          address:this.state.address,
-         isBookRequestActive : false
+         isExchangeRequestActive : false
        })
        return  Alert.alert(
             'User Added Successfully',
