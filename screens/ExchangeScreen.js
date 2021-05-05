@@ -10,7 +10,7 @@ export default class BookRequestScreen extends React.Component {
      this.state = {
        userId : firebase.auth().currentUser.email,
        itemName : "",
-       reasonToRequest : "",
+       description : "",
        isExchangeRequestActive : "",
        requestedBookName : "",
        bookStatus : "",
@@ -23,15 +23,15 @@ export default class BookRequestScreen extends React.Component {
    createUniqueId(){
      return Math.random().toString(36).substring(7);
    }
-   addRequest = async (itemName,reasonToRequest)=>
+   addRequest = async (itemName,description)=>
    {
      var userId = this.state.userId
      var randomRequestId = this.createUniqueId();
      db.collection("requested_books").add({
        "user_id" : userId,
        "book_Name": itemName,
-       "reasonToRequest": reasonToRequest,
-       "requestId" : randomRequestId,
+       "description": description,
+       "exchangeId" : randomRequestId,
        "book_status":"requested",
        "date" : firebase.firestore.FieldValue.serverTimestamp()
      })
@@ -44,7 +44,7 @@ export default class BookRequestScreen extends React.Component {
      })
      this.setState ({
       itemName : "",
-       reasonToRequest : "",
+       description : "",
       requestId : randomRequestId
      })
     return Alert.alert("Book Succesfully Requested")
@@ -178,14 +178,14 @@ export default class BookRequestScreen extends React.Component {
           placeholder = {"Why do you want this book?"}
           onChangeText={(text)=>{
             this.setState ({
-          reasonToRequest    : text
+          description    : text
             })
           }}
-          value = {this.state.reasonToRequest}
+          value = {this.state.description}
         
        />
 
-       <TouchableOpacity style={styles.button} onPress={()=>{this.addRequest(this.state.itemName,this.state.reasonToRequest)}}>
+       <TouchableOpacity style={styles.button} onPress={()=>{this.addRequest(this.state.itemName,this.state.description)}}>
        <Text>Request</Text>
        </TouchableOpacity>
       </KeyboardAvoidingView>
