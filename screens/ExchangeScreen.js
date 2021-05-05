@@ -27,7 +27,7 @@ export default class BookRequestScreen extends React.Component {
    {
      var userId = this.state.userId
      var randomRequestId = this.createUniqueId();
-     db.collection("requested_books").add({
+     db.collection("exchanged_requests")=>()({
        "user_id" : userId,
        "book_Name": itemName,
        "description": description,
