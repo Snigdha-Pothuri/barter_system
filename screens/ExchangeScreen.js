@@ -27,14 +27,14 @@ export default class BookRequestScreen extends React.Component {
    {
      var userId = this.state.userId
      var randomRequestId = this.createUniqueId();
-     db.collection("exchanged_requests")=>()({
+     db.collection("exchanged_requests"){
        "user_id" : userId,
        "book_Name": itemName,
        "description": description,
        "exchangeId" : randomRequestId,
        "book_status":"requested",
        "date" : firebase.firestore.FieldValue.serverTimestamp()
-     })
+     }
      await this.getBookRequest()
      db.collection("users").where("email_id","==",userId).get()
      .then((snapshot)=>{
